@@ -44,11 +44,10 @@ $(document).ready(function () {
     });
 
 
-    $(".delete").click(function (event) {
-        var id = $("#id").text();
-        //stop submit the form, we will post it manually.
+    $(".btn-danger").click(function (event) {
+
+        var id = jQuery(this).closest('tr').find('td:eq(0)').text()
         event.preventDefault();
-        $("#btn-search").prop("disabled", true);
 
         $.ajax({
             type: "POST",

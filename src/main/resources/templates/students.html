@@ -71,12 +71,10 @@
             </thead>
             <tbody>
             <tr th:each="student : ${students}">
-                <form id="delete-form">
-                    <th scope="row" id="id" th:text="${student.id}"></th>
-                    <td th:text="${student.name}"></td>
-                    <td th:text="${student.surname}"></td>
-                    <td><button type="button" class="btn btn-danger delete" >Удалить</button></td>
-                </form>
+                <td th:text="${student.id}" ></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.surname}"></td>
+                <td><a class="btn btn-danger" type="button">Удалить</a></td>
             </tr>
             </tbody>
         </table>

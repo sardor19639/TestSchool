@@ -2,7 +2,8 @@ package com.online.school.services;
 
 import com.online.school.controller.IndexController;
 import com.online.school.model.Student;
-import com.online.school.repositories.StudentRepository;
+import com.online.school.repositories.StudentMyBatisRepository;
+//import com.online.school.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,8 @@ public class StudentService {
 
     private final Logger log = LoggerFactory.getLogger(IndexController.class);
 
-
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentMyBatisRepository studentMyBatisRepository;
 
     public void saveStudent(Student student){
         log.info("name " + student.getName() + " surname:" + student.getSurname());
@@ -24,19 +24,19 @@ public class StudentService {
         newStudent.setName(student.getName());
         newStudent.setSurname(student.getSurname());
         newStudent.setActive(true);
-        studentRepository.save(newStudent);
+        studentMyBatisRepository.insert(newStudent);
 
     }
 
     public void deleteStudent(Integer id){
-        Student student = studentRepository.getOne(id.longValue());
-        student.setActive(false);
-        studentRepository.save(student);
+        studentMyBatisRepository.delete(id);
+//        student.setActive(false);
+//        studentRepository.save();
 
     }
 
     public List<Student> getAllStudents() {
-        return studentRepository.findAllByActive(true);
+        return studentMyBatisRepository.students();
     }
 
 }
